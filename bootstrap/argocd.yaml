@@ -1,34 +1,21 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: argocd
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
-  source:
-    chart: argo-cd
-    repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 7.9.0
-    helm:
-      releaseName: argo-cd
-  project: default
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
-    syncOptions:
-      - CreateNamespace=true
----
-# apiVersion: v1
-# kind: Service
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
 # metadata:
-#   name: argo-cd-
+#   name: argocd
 # spec:
-#   selector:
-#     app.kubernetes.io/name: proxy
-#   ports:
-#   - name: name-of-service-port
-#     protocol: TCP
-#     port: 80
-#     targetPort: http-web-svc
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: argocd
+#   source:
+#     chart: argo-cd
+#     repoURL: https://argoproj.github.io/argo-helm
+#     targetRevision: 7.9.0
+#     helm:
+#       releaseName: argo-cd
+#   project: default
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true
+#     syncOptions:
+#       - CreateNamespace=true
