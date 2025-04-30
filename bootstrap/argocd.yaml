@@ -13,7 +13,7 @@ spec:
     helm:
       releaseName: argo-cd
       valueFiles:
-        - values/argocd.yaml
+        - https://github.com/nzorn-knab/central/blob/master/values/argocd.yaml
   project: default
   syncPolicy:
     automated:
