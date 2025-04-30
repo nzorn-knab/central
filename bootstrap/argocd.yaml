@@ -7,13 +7,15 @@ spec:
     server: https://kubernetes.default.svc
     namespace: argocd
   source:
-    chart: argo-cd
-    repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 7.9.0
-    helm:
-      releaseName: argo-cd
-      valueFiles:
-        - https://github.com/nzorn-knab/central/blob/master/values/argocd.yaml
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 7.9.0
+      helm:
+        releaseName: argo-cd
+        valueFiles:
+          - $values/argocd.yaml
+    - repoURL: https://github.com/nzorn-knab/central
+      ref: values
   project: default
   syncPolicy:
     automated:
