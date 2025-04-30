@@ -13,7 +13,7 @@ spec:
       helm:
         releaseName: argo-cd
         valueFiles:
-          - $values/argocd.yaml
+          - $values/values/argocd.yaml
     - repoURL: https://github.com/nzorn-knab/central
       ref: values
   project: default
