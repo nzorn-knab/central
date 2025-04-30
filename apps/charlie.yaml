@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: charlie
+spec:
+  destination:
+    namespace: charlie
+    server: https://kubernetes.default.svc
+  source:
+    path: .
+    repoURL: https://github.com/nzorn-knab/charlie
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true

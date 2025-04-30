@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: alpha
+spec:
+  destination:
+    namespace: alpha
+    server: https://kubernetes.default.svc
+  source:
+    path: .
+    repoURL: https://github.com/nzorn-knab/alpha
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: alpha-infra
+spec:
+  destination:
+    namespace: alpha
+    server: https://kubernetes.default.svc
+  source:
+    path: infra
+    repoURL: https://github.com/nzorn-knab/alpha
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
