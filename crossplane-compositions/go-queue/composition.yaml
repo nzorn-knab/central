@@ -19,6 +19,9 @@ spec:
           template: |
             apiVersion: sqs.aws.upbound.io/v1beta1
             kind: Queue
+            metadata:
+              annotations:
+                gotemplating.fn.crossplane.io/composition-resource-name: queue
             spec:
               forProvider:
                 name: {{ .spec.forProvider.name }}
