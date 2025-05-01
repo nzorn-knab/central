@@ -1,12 +1,12 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata: 
-  name: standardqueues.platform.knab-internal.com
+  name: legacyqueues.platform.knab-internal.com
 spec:
   group: platform.knab-internal.com
   names:
-    kind: StandardQueue
-    plural: standardqueues
+    kind: LegacyQueue
+    plural: legacyqueues
   versions:
   - name: v1alpha1
     served: true

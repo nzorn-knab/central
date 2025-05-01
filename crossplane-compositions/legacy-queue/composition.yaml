@@ -1,11 +1,11 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: standard-queue
+  name: legacy-queue
 spec:
   compositeTypeRef:
     apiVersion: platform.knab-internal.com/v1alpha1
-    kind: StandardQueue
+    kind: LegacyQueue
   mode: Pipeline
   pipeline:
     - step: patch-and-transform
@@ -15,13 +15,13 @@ spec:
         apiVersion: pt.fn.crossplane.io/v1beta1
         kind: Resources
         resources:
-        - name: standard-queue
+        - name: legacy-queue
           base:
             apiVersion: sqs.aws.upbound.io/v1beta1
             kind: Queue
             spec:
               forProvider:
-                name: standard-queue
+                name: legacy-queue
                 region: eu-west-1
           patches:
             - type: FromCompositeFieldPath
