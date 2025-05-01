@@ -1,0 +1,32 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: go-queue
+spec:
+  compositeTypeRef:
+    apiVersion: platform.knab-internal.com/v1alpha1
+    kind: GoQueue
+  mode: Pipeline
+  pipeline:
+    - step: create-resource
+      functionRef:
+        name: function-go-templating
+      input:
+        apiVersion: gotemplating.fn.crossplane.io/v1beta1
+        kind: GoTemplate
+        source: Inline
+        inline:
+          template: |
+            apiVersion: sqs.aws.upbound.io/v1beta1
+            kind: Queue
+            spec:
+              forProvider:
+                name: {{ .spec.forProvider.name }}
+                region: eu-west-1
+          patches:
+            - type: FromCompositeFieldPath
+              fromFieldPath: spec.name
+              toFieldPath: spec.forProvider.name
+    - step: automatically-detect-ready-composed-resources
+      functionRef:
+        name: function-auto-ready
