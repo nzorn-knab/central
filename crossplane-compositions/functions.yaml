@@ -1,4 +1,4 @@
-# Go templates
+# Go Templates Function
 apiVersion: pkg.crossplane.io/v1beta1
 kind: Function
 metadata:
@@ -6,10 +6,18 @@ metadata:
 spec:
   package: xpkg.upbound.io/crossplane-contrib/function-go-templating:v0.9.2
 ---
-# Legacy
+# Legacy Patch and Transform Function
 apiVersion: pkg.crossplane.io/v1beta1
 kind: Function
 metadata:
   name: function-patch-and-transform
 spec:
   package: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.8.2
+---
+# Auto Ready Function
+apiVersion: pkg.crossplane.io/v1beta1
+kind: Function
+metadata:
+  name: function-auto-ready
+spec:
+  package: xpkg.upbound.io/crossplane-contrib/function-auto-ready:v0.4.2
