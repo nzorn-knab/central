@@ -21,7 +21,6 @@ spec:
             # Patch the XR with the status field
             dxr = {
                 **option("params").dxr
-                status.dummy = "cool-status"
             }
             # Construct a queue
             queue = {
