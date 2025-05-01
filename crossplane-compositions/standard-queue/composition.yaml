@@ -1,0 +1,29 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: standard-queue
+spec:
+  compositeTypeRef:
+    apiVersion: platform.knab-internal.com/v1alpha1
+    kind: StandardQueue
+  mode: Pipeline
+  pipeline:
+    - step: patch-and-transform
+      functionRef:
+        name: function-patch-and-transform
+      input:
+        apiVersion: pt.fn.crossplane.io/v1beta1
+        kind: Resources
+        resources:
+        - name: standard-queue
+          base:
+            apiVersion: sqs.aws.upbound.io/v1beta1
+            kind: Queue
+            spec:
+              forProvider:
+                name: standard-queue
+                region: eu-west-1
+          patches:
+            - type: FromCompositeFieldPath
+              fromFieldPath: spec.name
+              toFieldPath: spec.forProvider.name

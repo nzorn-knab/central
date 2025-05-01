@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crossplane-compositions
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: crossplane-system
+  source:
+    path: crossplane-compositions
+    repoURL: https://github.com/nzorn-knab/central
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
