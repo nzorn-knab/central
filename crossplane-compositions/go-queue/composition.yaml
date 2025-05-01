@@ -23,10 +23,6 @@ spec:
               forProvider:
                 name: {{ .spec.forProvider.name }}
                 region: eu-west-1
-          patches:
-            - type: FromCompositeFieldPath
-              fromFieldPath: spec.name
-              toFieldPath: spec.forProvider.name
     - step: automatically-detect-ready-composed-resources
       functionRef:
         name: function-auto-ready
