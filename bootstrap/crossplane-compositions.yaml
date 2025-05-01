@@ -11,7 +11,7 @@ spec:
     repoURL: https://github.com/nzorn-knab/central
     targetRevision: HEAD
     directory:
-      recursive: True
+      recurse: True
   project: default
   syncPolicy:
     automated: {}
