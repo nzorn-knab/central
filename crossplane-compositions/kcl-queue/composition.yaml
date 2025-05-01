@@ -1,0 +1,38 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: kcl-queue
+spec:
+  compositeTypeRef:
+    apiVersion: platform.crossplane.io/v1beta1
+    kind: KclQueue
+  mode: Pipeline
+  pipeline:
+    - step: create-resource
+      functionRef:
+        name: function-kcl
+      input:
+        apiVersion: krm.kcl.dev/v1alpha1
+        kind: KCLInput
+        source: |
+          # Read the XR
+          oxr = option("params").oxr
+          # Patch the XR with the status field
+          dxr = {
+              **option("params").dxr
+              status.dummy = "cool-status"
+          }
+          # Construct a queue
+          queue = {
+              apiVersion = "sqs.aws.upbound.io/v1beta1"
+              kind = "Queue"
+              metadata.annotations: {
+                  "krm.kcl.dev/composition-resource-name" = "queue"
+              }
+              spec.forProvider.region = eu-west-1
+          }
+          # Return the queue and patched XR
+          items = [queue, dxr]
+    - step: automatically-detect-ready-composed-resources
+      functionRef:
+        name: function-auto-ready
