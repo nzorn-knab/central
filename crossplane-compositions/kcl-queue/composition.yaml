@@ -30,7 +30,7 @@ spec:
                 metadata.annotations: {
                     "krm.kcl.dev/composition-resource-name" = "queue"
                 }
-                spec.forProvider.region = eu-west-1
+                spec.forProvider.region = "eu-west-1"
             }
             # Return the queue and patched XR
             items = [queue, dxr]
