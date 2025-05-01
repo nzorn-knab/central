@@ -10,6 +10,8 @@ spec:
     path: crossplane-compositions
     repoURL: https://github.com/nzorn-knab/central
     targetRevision: HEAD
+    directory:
+      recursive: True
   project: default
   syncPolicy:
     automated: {}
