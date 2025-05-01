@@ -24,7 +24,7 @@ spec:
                 gotemplating.fn.crossplane.io/composition-resource-name: queue
             spec:
               forProvider:
-                name: {{ .spec.forProvider.name }}
+                name: {{ .desired.composite.resource.spec.forProvider.name }}
                 region: eu-west-1
     - step: automatically-detect-ready-composed-resources
       functionRef:
