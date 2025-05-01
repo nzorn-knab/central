@@ -4,7 +4,7 @@ metadata:
   name: kcl-queue
 spec:
   compositeTypeRef:
-    apiVersion: platform.crossplane.io/v1beta1
+    apiVersion: platform.knab-internal.com/v1alpha1
     kind: KclQueue
   mode: Pipeline
   pipeline:
