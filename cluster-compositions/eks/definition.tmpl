@@ -2,6 +2,7 @@ apiVersion: eks.aws.upbound.io/v1beta2
 kind: Cluster
 metadata:
   name: {{ $.observed.composite.resource.spec.name }}
+  namespace: {{ $.observed.composite.resource.spec.namespace }}
 spec:
   forProvider:
     region: us-west-1
