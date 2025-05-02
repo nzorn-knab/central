@@ -5,5 +5,5 @@ metadata:
     gotemplating.fn.crossplane.io/composition-resource-name: queue
 spec:
   forProvider:
-    name: {{ .observed.composite.resource.metadata.name }}
+    name: {{ $.observed.composite.resource.metadata.name }}
     region: eu-west-1
