@@ -1,0 +1,13 @@
+apiVersion: eks.aws.upbound.io/v1beta2
+kind: Cluster
+metadata:
+  name: {{ $.observed.composite.resource.spec.name }}
+spec:
+  forProvider:
+    region: us-west-1
+    roleArnRef:
+      name: {{ $.observed.composite.resource.spec.region }}
+    vpcConfig:
+      subnetIdRefs:
+        - name: sample-subnet1
+        - name: sample-subnet2

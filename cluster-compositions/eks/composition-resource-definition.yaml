@@ -1,0 +1,29 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata: 
+  name: clusters.platform.knab-internal.com
+spec:
+  group: platform.knab-internal.com
+  namespace:  {{ .observed.composite.resource.spec.namespace }}
+  names:
+    kind: Cluster
+    plural: clusters
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              name:
+                type: string
+              namespace:
+                type: string
+              region:
+                type: string
+              subnets:
+                type: list
