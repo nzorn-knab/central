@@ -1,0 +1,22 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: go-filesystem-queue
+spec:
+  compositeTypeRef:
+    apiVersion: platform.knab-internal.com/v1alpha1
+    kind: GoFileSystemQueue
+  mode: Pipeline
+  pipeline:
+    - step: create-resource
+      functionRef:
+        name: function-go-templating
+      input:
+        apiVersion: gotemplating.fn.crossplane.io/v1beta1
+        kind: GoTemplate
+        source: FileSystem
+        fileSystem:
+          dirPath: definition.yaml
+    - step: automatically-detect-ready-composed-resources
+      functionRef:
+        name: function-auto-ready
