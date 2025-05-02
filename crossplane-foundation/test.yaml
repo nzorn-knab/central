@@ -1,6 +1,7 @@
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
+metadata:
+  name: sandbox-private-eu-west-1b
 spec:
   managementPolicies: ["Observe"]
-metadata:
   name: sandbox-private-eu-west-1b
